@@ -1,3 +1,4 @@
+import { AppPlayer } from "@/components/remotion/player";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -30,7 +31,7 @@ export default function Studio() {
               >
                 <ResizablePanel defaultSize={60}>
                   <div className="h-full">
-                    <span className="font-semibold">Video Preview</span>
+                    <AppPlayer />
                   </div>
                 </ResizablePanel>
                 <ResizableHandle />
