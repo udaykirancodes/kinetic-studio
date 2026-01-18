@@ -1,5 +1,9 @@
-import { ComponentExample } from "@/components/component-example";
-
 export default function Page() {
-return <ComponentExample />;
+  return (
+    <>
+      <main className="w-full max-w-7xl mx-auto bg-background flex">
+        Landing Page
+      </main>
+    </>
+  );
 }
