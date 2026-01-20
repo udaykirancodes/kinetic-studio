@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export const PerspectiveImages = () => {
   return (
-    <div className="relative col-span-7 w-full py-10 pl-10">
+    <div className="relative my-10 h-124 w-full py-10 md:col-span-6 md:my-0 md:pl-10">
       <motion.div
         initial={{
           opacity: 0,
@@ -24,7 +24,7 @@ export const PerspectiveImages = () => {
         <Image
           src={"https://assets.aceternity.com/agenforce-demo-2.jpg"}
           height={720}
-          width={1280}
+          width={720}
           alt="Demo 1"
           className={cn(
             "absolute inset-0 z-0 rounded-md border mask-r-from-0% mask-b-from-50% transform-3d",
@@ -51,7 +51,7 @@ export const PerspectiveImages = () => {
         <Image
           src={"https://assets.aceternity.com/agenforce-demo-1.jpg"}
           height={720}
-          width={1280}
+          width={720}
           alt="Demo 2"
           className={cn(
             "absolute inset-0 z-0 -translate-x-10 -translate-y-30 rounded-md border mask-r-from-50% mask-b-from-50% transform-3d",
