@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export const PerspectiveImages = () => {
   return (
-    <div className="relative my-10 h-124 w-full py-10 md:col-span-6 md:my-0 md:pl-10">
+    <div className="relative my-10 h-50 w-full py-10 md:col-span-6 md:my-0 md:h-88 md:pl-10">
       <motion.div
         initial={{
           opacity: 0,

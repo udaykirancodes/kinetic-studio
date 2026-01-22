@@ -1,5 +1,5 @@
-import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import type { Metadata } from "next";
 import { Geist_Mono, Inter, Manrope } from "next/font/google";
 import "./globals.css";
@@ -34,15 +34,16 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} ${inter.variable} ${giestMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          {children}
-        </ThemeProvider>
+        <SidebarProvider className="flex flex-col">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </SidebarProvider>
       </body>
     </html>
   );

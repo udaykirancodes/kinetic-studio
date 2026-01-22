@@ -9,7 +9,7 @@ export const Hero = () => {
   return (
     <div className="overflow-hidden">
       <Container>
-        <section className="grid pt-10 md:grid-cols-12 md:pt-20 lg:pt-32">
+        <section className="grid py-10 md:grid-cols-12 md:py-20 lg:py-32">
           <div className="md:col-span-6">
             <Heading>
               Create beautiful kinetic <br /> typography videos <br /> from text
