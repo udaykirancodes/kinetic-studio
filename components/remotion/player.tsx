@@ -4,10 +4,10 @@ import { Player } from "@remotion/player";
 import { AppComposition } from "./composition";
 export const AppPlayer = () => {
   return (
-    <div className="flex h-full items-start p-4 justify-center w-full bg-red-300">
-      <div className="relative h-125 w-125">
+    <div className="flex h-full w-full items-start justify-center p-4">
+      <div className="relative h-full w-full">
         <Player
-          className="border-slate-300 bg-white rounded-lg border"
+          className="rounded-lg border border-slate-300 bg-white"
           component={AppComposition}
           durationInFrames={60 * 10}
           fps={30}
@@ -15,6 +15,7 @@ export const AppPlayer = () => {
           compositionHeight={720}
           controls
           autoPlay
+          clickToPlay
           style={{
             position: "absolute",
             top: 0,

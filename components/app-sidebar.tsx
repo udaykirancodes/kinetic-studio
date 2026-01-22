@@ -42,7 +42,7 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon" variant="floating">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>KINETIC STUDIO</SidebarGroupLabel>
