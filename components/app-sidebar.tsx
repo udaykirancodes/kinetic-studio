@@ -40,9 +40,13 @@ const items = [
   },
 ];
 
-export function AppSidebar() {
+type AppSidebarProps = {
+  side?: "left" | "right";
+};
+
+export function AppSidebar({ side = "left" }: AppSidebarProps) {
   return (
-    <Sidebar collapsible="icon" variant="floating">
+    <Sidebar collapsible="icon" side={side} variant="floating">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>KINETIC STUDIO</SidebarGroupLabel>
