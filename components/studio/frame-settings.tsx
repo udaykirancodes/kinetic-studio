@@ -106,7 +106,7 @@ export const FrameSettings = () => {
             type={field.type}
           />
         ))}
-        <div className="flex w-full items-center justify-between pt-4">
+        <div className="flex w-full items-center justify-between pt-2">
           <Button
             type="reset"
             size={"sm"}

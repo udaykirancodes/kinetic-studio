@@ -48,6 +48,10 @@ export const useVideoStore = create<VideoStore>((set) => ({
     set((state) => {
       const newData = state.frames.map((item, i) => {
         if (i === index) {
+          // check if already selected, do not toggle
+          if (item.selected) {
+            return { ...item, selected: true };
+          }
           // Toggle the current item's selected state and ensure it's the only one selected
           return { ...item, selected: !item.selected };
         } else {
