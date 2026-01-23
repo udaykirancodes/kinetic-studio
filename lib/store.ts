@@ -57,7 +57,22 @@ export const useVideoStore = create<VideoStore>((set) => ({
           return { ...frame, selected: false };
         }
       });
-      return { frames: newFrames };
+      return { ...state, frames: newFrames };
+    }),
+  updateText: (index: number, newText: string) =>
+    set((state) => {
+      const newFrames = state.frames.map((item, i) => {
+        if (i === index) {
+          const text = newText?.trim() || "";
+          return {
+            ...item,
+            text: text,
+            wordCount: text.length,
+          };
+        }
+        return item;
+      });
+      return { ...state, frames: newFrames };
     }),
   updateInfo: (newInfo: VideoStore["info"]) => set({ info: newInfo }),
   toggleSelect: (index: number) =>
@@ -76,20 +91,5 @@ export const useVideoStore = create<VideoStore>((set) => ({
         }
       });
       return { frames: newData };
-    }),
-  updateText: (index: number, newText: string) =>
-    set((state) => {
-      const newData = state.frames.map((item, i) => {
-        if (i === index) {
-          const text = newText?.trim() || "";
-          return {
-            ...item,
-            text: text,
-            wordCount: text.length,
-          };
-        }
-        return item;
-      });
-      return { ...state, frames: newData };
     }),
 }));

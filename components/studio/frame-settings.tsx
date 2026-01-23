@@ -126,9 +126,9 @@ export const FrameSettings = () => {
             type="submit"
             size={"sm"}
             className="cursor-pointer"
-            disabled={isLoading}
+            disabled={isLoading || !form.formState.isDirty}
           >
-            Submit{" "}
+            Update{" "}
             {isLoading && (
               <LoaderCircle className="size-3 animate-spin text-xs" />
             )}

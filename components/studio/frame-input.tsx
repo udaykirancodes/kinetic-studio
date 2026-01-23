@@ -2,7 +2,7 @@ import { useVideoStore } from "@/lib/store";
 import { Alert02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useDebouncer } from "@tanstack/react-pacer";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   InputGroup,
   InputGroupAddon,
@@ -14,8 +14,13 @@ type FrameInputProps = {
   index: number;
 };
 export const FrameInput: React.FC<FrameInputProps> = ({ value, index }) => {
-  const { updateText, toggleSelect } = useVideoStore();
+  const { toggleSelect } = useVideoStore();
+  const updateText = useVideoStore((state) => state.updateText);
   const [currentText, setCurrentText] = useState(value);
+
+  useEffect(() => {
+    setCurrentText(value);
+  }, [value]);
 
   // Initialize each utility
   const debouncer = useDebouncer(updateText, {
