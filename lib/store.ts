@@ -1,3 +1,4 @@
+import { FrameFormValues } from "@/components/studio/frame-schema";
 import { create } from "zustand";
 import { BLAST_AUDIO, BLAST_FRAMES } from "./constants";
 import { FrameData } from "./types";
@@ -13,6 +14,7 @@ type VideoStore = {
   updateInfo: (newInfo: VideoStore["info"]) => void;
   toggleSelect: (index: number) => void;
   updateText: (index: number, newText: string) => void;
+  updateSelectedFrame: (newFrame: FrameFormValues) => void;
 };
 
 export const useVideoStore = create<VideoStore>((set) => ({
@@ -23,6 +25,24 @@ export const useVideoStore = create<VideoStore>((set) => ({
     width: 1920,
   },
   updateFrames: (newFrames: FrameData[]) => set({ frames: newFrames }),
+  updateSelectedFrame: (newFrame: FrameFormValues) =>
+    set((state) => {
+      const newFrames = state.frames.map((frame) => {
+        if (frame.selected) {
+          return {
+            wordCount: frame.text.trim().split(" ").length,
+            backgroundColor: newFrame.backgroundColor,
+            textColor: newFrame.textColor,
+            selected: true,
+            text: newFrame.text,
+            time: newFrame.time,
+          };
+        } else {
+          return { ...frame, selected: false };
+        }
+      });
+      return { frames: newFrames };
+    }),
   updateInfo: (newInfo: VideoStore["info"]) => set({ info: newInfo }),
   toggleSelect: (index: number) =>
     set((state) => {

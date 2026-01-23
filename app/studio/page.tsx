@@ -18,12 +18,11 @@ export default function Studio() {
           <Card className="row-span-2 min-h-0 rounded-sm">
             <AppPlayer />
           </Card>
-          <Card className="h-87.5 rounded-sm p-2">
-            <VideoSettings />
-          </Card>
-
-          <Card className="rounded-sm p-2">
+          <Card className="h-auto rounded-sm p-2">
             <FrameSettings />
+          </Card>
+          <Card className="flex-1 rounded-sm p-2">
+            <VideoSettings />
           </Card>
           <Card className="col-span-2 rounded-sm px-2 py-5">Bottom</Card>
         </section>

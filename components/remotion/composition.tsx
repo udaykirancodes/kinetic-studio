@@ -8,11 +8,11 @@ import {
   staticFile,
   useVideoConfig,
 } from "remotion";
-import { TextMultiple } from "./render/text-multiple";
-import TextOne from "./render/text-one";
+import { TextMultiple, TextOne } from "./render";
 
 export const AppComposition = () => {
   const frames = useVideoStore((state) => state.frames);
+  const audio = useVideoStore((state) => state.info.audio);
 
   const { fps } = useVideoConfig();
 
@@ -50,10 +50,9 @@ export const AppComposition = () => {
               }}
             >
               {item.wordCount === 1 ? (
-                <TextOne textcolor={item.textColor}>{item.text}</TextOne>
+                <TextOne>{item.text}</TextOne>
               ) : (
                 <TextMultiple
-                  textcolor={item.textColor}
                   words={item.text.split(" ")}
                   durationInFrames={frameDurations[index] || 0}
                 />
@@ -62,7 +61,7 @@ export const AppComposition = () => {
           </Sequence>
         );
       })}
-      <Html5Audio pauseWhenBuffering src={staticFile("blast.mp3")} />
+      <Html5Audio pauseWhenBuffering src={staticFile(audio)} />
     </AbsoluteFill>
   );
 };
