@@ -1,7 +1,8 @@
 "use client";
 import { useVideoStore } from "@/lib/store";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { LoaderCircle } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Control, Controller, Path, useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import {
@@ -61,6 +62,7 @@ export const FrameSettings = () => {
   );
 
   const selectedFrame = frames.find((frame) => frame.selected);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Create the form
   const form = useForm<FrameFormValues>({
@@ -83,7 +85,11 @@ export const FrameSettings = () => {
   }, [form, selectedFrame]);
 
   const handleSubmit = (data: FrameFormValues) => {
+    setIsLoading(true);
     updateSelectedFrame(data);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
   };
 
   if (!selectedFrame) {
@@ -120,9 +126,12 @@ export const FrameSettings = () => {
             type="submit"
             size={"sm"}
             className="cursor-pointer"
-            disabled={false}
+            disabled={isLoading}
           >
-            Submit
+            Submit{" "}
+            {isLoading && (
+              <LoaderCircle className="size-3 animate-spin text-xs" />
+            )}
           </Button>
         </div>
       </form>

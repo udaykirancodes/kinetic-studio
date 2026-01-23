@@ -3,6 +3,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -11,10 +12,12 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { useVideoStore } from "@/lib/store";
+import { Button } from "../ui/button";
 import { FrameInput } from "./frame-input";
 
 export function FrameBar() {
-  const { frames } = useVideoStore();
+  const frames = useVideoStore((state) => state.frames);
+  const addFrameAtEnd = useVideoStore((state) => state.addFrameAtEnd);
   return (
     <Sidebar
       style={
@@ -43,6 +46,18 @@ export function FrameBar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu className="my-0 py-0">
+          {/* Add Empty Frame */}
+          <SidebarMenuItem key={"new-frame"} className="">
+            <SidebarMenuButton asChild>
+              <Button variant="outline" onClick={addFrameAtEnd}>
+                Add Frame at End
+              </Button>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }

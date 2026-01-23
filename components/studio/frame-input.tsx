@@ -1,7 +1,8 @@
 import { useVideoStore } from "@/lib/store";
 import { Alert02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import React from "react";
+import { useDebouncer } from "@tanstack/react-pacer";
+import React, { useState } from "react";
 import {
   InputGroup,
   InputGroupAddon,
@@ -14,14 +15,22 @@ type FrameInputProps = {
 };
 export const FrameInput: React.FC<FrameInputProps> = ({ value, index }) => {
   const { updateText, toggleSelect } = useVideoStore();
+  const [currentText, setCurrentText] = useState(value);
+
+  // Initialize each utility
+  const debouncer = useDebouncer(updateText, {
+    key: "my-debouncer",
+    wait: 500,
+  });
+
   return (
     <InputGroup>
       <InputGroupInput
         id="input-group-url"
-        value={value}
+        value={currentText}
         onChange={(e) => {
-          const newText = e.target.value;
-          updateText(index, newText);
+          setCurrentText(e.target.value);
+          debouncer.maybeExecute(index, e.target.value);
         }}
         onClick={(e) => {
           e.preventDefault();

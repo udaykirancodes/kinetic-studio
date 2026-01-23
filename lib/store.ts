@@ -11,6 +11,7 @@ type VideoStore = {
     width: number;
   };
   updateFrames: (newData: FrameData[]) => void;
+  addFrameAtEnd: () => void;
   updateInfo: (newInfo: VideoStore["info"]) => void;
   toggleSelect: (index: number) => void;
   updateText: (index: number, newText: string) => void;
@@ -25,6 +26,21 @@ export const useVideoStore = create<VideoStore>((set) => ({
     width: 1920,
   },
   updateFrames: (newFrames: FrameData[]) => set({ frames: newFrames }),
+  addFrameAtEnd: () =>
+    set((state) => {
+      const newFrames = [
+        ...state.frames,
+        {
+          text: "",
+          wordCount: 0,
+          time: 0.3,
+          selected: false,
+          backgroundColor: "black",
+          textColor: "white",
+        },
+      ];
+      return { frames: newFrames };
+    }),
   updateSelectedFrame: (newFrame: FrameFormValues) =>
     set((state) => {
       const newFrames = state.frames.map((frame) => {
