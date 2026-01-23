@@ -41,7 +41,12 @@ export const useVideoStore = create<VideoStore>((set) => ({
     set((state) => {
       const newData = state.frames.map((item, i) => {
         if (i === index) {
-          return { ...item, text: newText };
+          const text = newText?.trim() || "";
+          return {
+            ...item,
+            text: text,
+            wordCount: text.length,
+          };
         }
         return item;
       });

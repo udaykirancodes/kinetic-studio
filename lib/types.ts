@@ -1,6 +1,8 @@
 export type FrameData = {
   text: string;
-  num: number;
   time: number;
+  wordCount: number;
   selected: boolean;
+  backgroundColor: string;
+  textColor: string;
 };
