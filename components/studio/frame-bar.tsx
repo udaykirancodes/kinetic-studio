@@ -11,14 +11,16 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { useVideoStore } from "@/lib/store";
+import { FrameInput } from "./frame-input";
 
 export function FrameBar() {
-  const { data } = useVideoStore();
+  const { frames } = useVideoStore();
   return (
     <Sidebar
       style={
         {
           "--sidebar-width": "20rem",
+          "--sidebar-width-icon": "19rem",
         } as React.CSSProperties
       }
       collapsible="icon"
@@ -27,14 +29,13 @@ export function FrameBar() {
     >
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Frames</SidebarGroupLabel>
+          <SidebarGroupLabel>Frames ({frames.length})</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {data.map((item, index) => (
+              {frames.map((item, index) => (
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton asChild>
-                    {/* <item.icon /> */}
-                    <span>{item.text}</span>
+                    <FrameInput value={item.text} index={index} />
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

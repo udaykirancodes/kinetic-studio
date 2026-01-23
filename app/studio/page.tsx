@@ -1,9 +1,9 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import { FrameBar } from "@/components/frame-bar";
-import { FrameSettings } from "@/components/frame-settings";
 import { AppPlayer } from "@/components/remotion/player";
+import { FrameBar } from "@/components/studio/frame-bar";
+import { FrameSettings } from "@/components/studio/frame-settings";
 import { StudioNav } from "@/components/studio/studio-nav";
-import { TextSettings } from "@/components/text-settings";
+import { VideoSettings } from "@/components/studio/video-settings";
 import { Card } from "@/components/ui/card";
 
 export default function Studio() {
@@ -19,11 +19,11 @@ export default function Studio() {
             <AppPlayer />
           </Card>
           <Card className="h-87.5 rounded-sm p-2">
-            <FrameSettings />
+            <VideoSettings />
           </Card>
 
           <Card className="rounded-sm p-2">
-            <TextSettings />
+            <FrameSettings />
           </Card>
           <Card className="col-span-2 rounded-sm px-2 py-5">Bottom</Card>
         </section>

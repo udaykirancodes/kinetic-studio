@@ -30,7 +30,7 @@ export const time = () => {
 };
 
 export const AppComposition = () => {
-  const data = useVideoStore((state) => state.data);
+  const data = useVideoStore((state) => state.frames);
 
   const colorPalette = colorPalettes[Number(1) - 1];
   const { fps } = useVideoConfig();
@@ -85,7 +85,7 @@ export const AppComposition = () => {
           </Sequence>
         );
       })}
-      <Html5Audio pauseWhenBuffering src={staticFile("stomp.mp3")} />
+      <Html5Audio pauseWhenBuffering src={staticFile("blast.mp3")} />
     </AbsoluteFill>
   );
 };
