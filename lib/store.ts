@@ -9,6 +9,7 @@ type VideoStore = {
     audio: string;
     height: number;
     width: number;
+    fps: number;
   };
   updateFrames: (newData: FrameData[]) => void;
   addFrameAtEnd: () => void;
@@ -22,8 +23,9 @@ export const useVideoStore = create<VideoStore>((set) => ({
   frames: BLAST_FRAMES,
   info: {
     audio: BLAST_AUDIO,
-    height: 1080,
-    width: 1920,
+    height: 720,
+    width: 520,
+    fps: 30,
   },
   updateFrames: (newFrames: FrameData[]) => set({ frames: newFrames }),
   addFrameAtEnd: () =>

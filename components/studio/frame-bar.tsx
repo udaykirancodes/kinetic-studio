@@ -10,6 +10,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { useVideoStore } from "@/lib/store";
 import { Button } from "../ui/button";
@@ -17,6 +18,7 @@ import { FrameInput } from "./frame-input";
 
 export function FrameBar() {
   const frames = useVideoStore((state) => state.frames);
+  const { state } = useSidebar();
   const addFrameAtEnd = useVideoStore((state) => state.addFrameAtEnd);
   return (
     <Sidebar
@@ -52,7 +54,7 @@ export function FrameBar() {
           <SidebarMenuItem key={"new-frame"} className="">
             <SidebarMenuButton asChild>
               <Button variant="outline" onClick={addFrameAtEnd}>
-                Add Frame at End
+                {state === "expanded" ? "Add Frame at End" : "+"}
               </Button>
             </SidebarMenuButton>
           </SidebarMenuItem>

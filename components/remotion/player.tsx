@@ -1,20 +1,25 @@
 "use client";
 
+import { useVideoStore } from "@/lib/store";
 import { Player } from "@remotion/player";
 import { AppComposition } from "./composition";
 export const AppPlayer = () => {
+  const { height, width, fps } = useVideoStore((state) => state.info);
+  const frames = useVideoStore((state) => state.frames);
+  const totalFrames =
+    Math.ceil(frames.reduce((acc, frame) => acc + frame.time, 0)) || fps;
   return (
     <div className="flex h-full w-full items-start justify-center p-4">
       <div className="relative h-full w-full">
         <Player
-          className="rounded-lg border border-slate-300 bg-white"
+          className="rounded-lg border border-slate-300"
           component={AppComposition}
-          durationInFrames={60 * 10}
-          fps={30}
-          compositionWidth={720}
-          compositionHeight={720}
+          durationInFrames={fps * totalFrames}
+          fps={fps}
+          compositionWidth={width}
+          compositionHeight={height}
           controls
-          autoPlay
+          // autoPlay
           clickToPlay
           style={{
             position: "absolute",
