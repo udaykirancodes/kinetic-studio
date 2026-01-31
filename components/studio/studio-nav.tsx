@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 
 export const StudioNav = () => {
   const { theme, setTheme } = useTheme();
+
   const handleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };

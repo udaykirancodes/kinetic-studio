@@ -15,6 +15,7 @@ type VideoStore = {
   addFrameAtEnd: () => void;
   updateInfo: (newInfo: VideoStore["info"]) => void;
   toggleSelect: (index: number) => void;
+  deleteFrame: (index: number) => void;
   updateText: (index: number, newText: string) => void;
   updateSelectedFrame: (newFrame: FrameFormValues) => void;
 };
@@ -93,5 +94,10 @@ export const useVideoStore = create<VideoStore>((set) => ({
         }
       });
       return { frames: newData };
+    }),
+  deleteFrame: (index: number) =>
+    set((state) => {
+      const newFrames = state.frames.filter((_, i) => i !== index);
+      return { frames: newFrames };
     }),
 }));

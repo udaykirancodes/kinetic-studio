@@ -40,7 +40,11 @@ export function FrameBar() {
               {frames.map((item, index) => (
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton asChild>
-                    <FrameInput value={item.text} index={index} />
+                    <FrameInput
+                      value={item.text}
+                      index={index}
+                      selected={item.selected}
+                    />
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
