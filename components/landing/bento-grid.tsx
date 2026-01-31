@@ -21,21 +21,21 @@ export function BentoGrid() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8 text-center"
+          className="mb-8 gap-y-2 text-center"
         >
           <motion.span
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.4 }}
-            className="border-border bg-muted/50 text-muted-foreground inline-block rounded-full border px-4 py-1 text-sm font-medium"
+            className="border-border bg-muted/50 text-muted-foreground mb-4 inline-block rounded-full border px-4 py-1 text-sm font-medium"
           >
             Features
           </motion.span>
           <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
             Everything you need
           </h2>
-          <p className="text-muted-foreground mx-auto mt-2 max-w-2xl text-lg">
+          <p className="text-muted-foreground mx-auto mt-3 max-w-2xl text-lg">
             From text to polished video in minutes. No coding, no complexity.
           </p>
         </motion.div>

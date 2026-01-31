@@ -25,7 +25,7 @@ export const Hero = () => {
                   className={cn(
                     "cursor-pointer",
                     "shadow-[-82px_54px_27px_0px_rgba(0,0,0,0.01),-52px_35px_25px_0px_rgba(0,0,0,0.04),-29px_19px_21px_0px_rgba(0,0,0,0.15),-13px_9px_16px_0px_rgba(0,0,0,0.25),-3px_2px_9px_0px_rgba(0,0,0,0.29)]",
-                    "dark:shadow-[-82px_54px_27px_0px_rgba(255,255,255.01),-52px_35px_25px_0px_rgba(255,255,255.04),-29px_19px_21px_0px_rgba(255,255,255.15),-13px_9px_16px_0px_rgba(255,255,255.25),-3px_2px_9px_0px_rgba(0,0,0,0.29)]"
+                    "dark:shadow-none"
                   )}
                   size={"sm"}
                 >
