@@ -45,7 +45,7 @@ export function AppSidebar() {
     <Sidebar collapsible="icon" variant="floating">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>KINETIC STUDIO</SidebarGroupLabel>
+          <SidebarGroupLabel>KINETIC STUDIO (Examples)</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

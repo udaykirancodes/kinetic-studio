@@ -1,6 +1,11 @@
 import { FrameFormValues } from "@/components/studio/frame-schema";
 import { create } from "zustand";
-import { BLAST_AUDIO, BLAST_FRAMES } from "./constants";
+import {
+  BLAST_AUDIO,
+  BLAST_FRAMES,
+  BRAND_AUDIO,
+  BRAND_FRAMES,
+} from "./constants";
 import { FrameData } from "./types";
 
 type VideoStore = {
@@ -21,9 +26,9 @@ type VideoStore = {
 };
 
 export const useVideoStore = create<VideoStore>((set) => ({
-  frames: BLAST_FRAMES,
+  frames: BRAND_FRAMES,
   info: {
-    audio: BLAST_AUDIO,
+    audio: BRAND_AUDIO,
     height: 720,
     width: 520,
     fps: 30,
@@ -100,4 +105,42 @@ export const useVideoStore = create<VideoStore>((set) => ({
       const newFrames = state.frames.filter((_, i) => i !== index);
       return { frames: newFrames };
     }),
+}));
+
+export type AppStore = {
+  templates: {
+    frames: FrameData[];
+    name: string;
+    info: {
+      audio: string;
+      height: number;
+      width: number;
+      fps: number;
+    };
+  }[];
+};
+
+export const useAppStore = create<AppStore>(() => ({
+  templates: [
+    {
+      frames: BLAST_FRAMES,
+      name: "Blast",
+      info: {
+        audio: BLAST_AUDIO,
+        height: 720,
+        width: 520,
+        fps: 30,
+      },
+    },
+    {
+      frames: BLAST_FRAMES,
+      name: "Brand",
+      info: {
+        audio: BRAND_AUDIO,
+        height: 720,
+        width: 520,
+        fps: 30,
+      },
+    },
+  ],
 }));

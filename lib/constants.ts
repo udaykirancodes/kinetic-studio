@@ -315,3 +315,335 @@ export const BLAST_FRAMES: FrameData[] = [
   },
 ];
 export const BLAST_AUDIO = "blast.mp3";
+
+/**
+ * 0.4 - Branding
+ * 0.5 - is
+ * 0.9 - the
+ * 1.1 - overall
+ * 1.25 - overall
+ * 1.4 - overall
+ * 1.55 - overall
+ * 1.75 - overall
+ * 2.2 - experience
+ * 2.4 - you
+ * 2.9 - you
+ * 3.2 - you
+ * 3.5 - for
+ * 3.65 - for
+ * 4.1 - your
+ * 4.2 - audience
+ * 4.7 - audience
+ * 5.15 - that
+ * 5.4 - truly
+ * 5.6 - truly
+ * 6.0 - stand
+ * 6.2 - out
+ * 6.5 - out
+ * 6.65 - and
+ * 7.15- your
+ * 7.75 - brand
+ * 8.0 - to
+ * 8.65 - connect
+ * 8.9 - with
+ * 9.55 - audience
+ * 9.95 - on
+ * 10.1 - a
+ * 10.5 - deeper
+ * 10.75 - deeper
+ * 11.32 - level
+ * 11.85 - 😌
+ */
+
+export const BRAND_FRAMES: FrameData[] = [
+  {
+    text: "Branding",
+    wordCount: 1,
+    time: 0.4,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "is",
+    wordCount: 1,
+    time: 0.1,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "the",
+    wordCount: 1,
+    time: 0.4,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "overall",
+    wordCount: 1,
+    time: 0.2,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "overall",
+    wordCount: 1,
+    time: 0.15,
+    selected: false,
+    backgroundColor: "#000000", // swapped
+    textColor: "#ffffff",
+  },
+  {
+    text: "overall",
+    wordCount: 1,
+    time: 0.15,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "overall",
+    wordCount: 1,
+    time: 0.15,
+    selected: false,
+    backgroundColor: "#000000",
+    textColor: "#ffffff",
+  },
+  {
+    text: "overall",
+    wordCount: 1,
+    time: 0.2,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "experience",
+    wordCount: 1,
+    time: 0.45,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "you",
+    wordCount: 1,
+    time: 0.2,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "you",
+    wordCount: 1,
+    time: 0.5,
+    selected: false,
+    backgroundColor: "#000000",
+    textColor: "#ffffff",
+  },
+  {
+    text: "create",
+    wordCount: 1,
+    time: 0.3,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "for",
+    wordCount: 1,
+    time: 0.3,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "for",
+    wordCount: 1,
+    time: 0.15,
+    selected: false,
+    backgroundColor: "#000000",
+    textColor: "#ffffff",
+  },
+  {
+    text: "your",
+    wordCount: 1,
+    time: 0.45,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "audience",
+    wordCount: 1,
+    time: 0.1,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "audience",
+    wordCount: 1,
+    time: 0.5,
+    selected: false,
+    backgroundColor: "#000000",
+    textColor: "#ffffff",
+  },
+  {
+    text: "that",
+    wordCount: 1,
+    time: 0.45,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "truly",
+    wordCount: 1,
+    time: 0.25,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "truly",
+    wordCount: 1,
+    time: 0.2,
+    selected: false,
+    backgroundColor: "#000000",
+    textColor: "#ffffff",
+  },
+  {
+    text: "stand",
+    wordCount: 1,
+    time: 0.4,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "out",
+    wordCount: 1,
+    time: 0.2,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "out",
+    wordCount: 1,
+    time: 0.3,
+    selected: false,
+    backgroundColor: "#000000",
+    textColor: "#ffffff",
+  },
+  {
+    text: "and",
+    wordCount: 1,
+    time: 0.15,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "your",
+    wordCount: 1,
+    time: 0.5,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "brand",
+    wordCount: 1,
+    time: 0.6,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "to",
+    wordCount: 1,
+    time: 0.25,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "connect",
+    wordCount: 1,
+    time: 0.65,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "with",
+    wordCount: 1,
+    time: 0.25,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "audience",
+    wordCount: 1,
+    time: 0.65,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "on",
+    wordCount: 1,
+    time: 0.4,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "a",
+    wordCount: 1,
+    time: 0.15,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "deeper",
+    wordCount: 1,
+    time: 0.4,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "deeper",
+    wordCount: 1,
+    time: 0.25,
+    selected: false,
+    backgroundColor: "#000000",
+    textColor: "#ffffff",
+  },
+  {
+    text: "level",
+    wordCount: 1,
+    time: 0.57,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+  {
+    text: "😌",
+    wordCount: 1,
+    time: 0.53,
+    selected: false,
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+  },
+];
+
+export const BRAND_AUDIO = "brand.mp3";
