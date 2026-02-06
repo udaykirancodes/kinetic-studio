@@ -13,6 +13,13 @@ import {
   FieldLabel,
 } from "../ui/field";
 import { InputGroup, InputGroupInput } from "../ui/input-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 import { NoFrameSelected } from "./empty";
 import { FrameFormValues, frameSchema } from "./frame-schema";
 
@@ -22,6 +29,8 @@ type FormField = {
   placeholder: string;
   type: string;
   description?: string;
+  step?: number;
+  required?: boolean;
 };
 
 const fields: FormField[] = [
@@ -31,6 +40,24 @@ const fields: FormField[] = [
     placeholder: "Embrace the lush",
     type: "text",
     description: "Enter the text for the frame",
+    required: true,
+  },
+  {
+    name: "type",
+    label: "Animation Type",
+    placeholder: "fade-in",
+    type: "select",
+    description: "Choose how the text reveals in this frame",
+    required: true,
+  },
+  {
+    name: "fontSize",
+    label: "Font Size (px)",
+    placeholder: "96",
+    type: "number",
+    description: "Optional: override the font size for this frame",
+    step: 1,
+    required: false,
   },
   {
     name: "time",
@@ -38,6 +65,8 @@ const fields: FormField[] = [
     placeholder: "0.53",
     type: "number",
     description: "Enter the time for the frame",
+    step: 0.1,
+    required: true,
   },
   {
     name: "backgroundColor",
@@ -45,6 +74,7 @@ const fields: FormField[] = [
     placeholder: "white",
     type: "text",
     description: "Enter the background color for the frame",
+    required: true,
   },
   {
     name: "textColor",
@@ -52,6 +82,7 @@ const fields: FormField[] = [
     placeholder: "black",
     type: "text",
     description: "Enter the text color for the frame",
+    required: true,
   },
 ];
 
@@ -72,6 +103,8 @@ export const FrameSettings = () => {
       time: 0,
       backgroundColor: "",
       textColor: "",
+      type: selectedFrame?.type || "fade-in",
+      fontSize: selectedFrame?.fontSize,
     },
   });
 
@@ -81,6 +114,8 @@ export const FrameSettings = () => {
       time: selectedFrame?.time || 0,
       backgroundColor: selectedFrame?.backgroundColor || "",
       textColor: selectedFrame?.textColor || "",
+      type: selectedFrame?.type || "fade-in",
+      fontSize: selectedFrame?.fontSize,
     });
   }, [form, selectedFrame]);
 
@@ -102,16 +137,28 @@ export const FrameSettings = () => {
         onSubmit={form.handleSubmit(handleSubmit)}
         className="my-2 min-w-full space-y-2"
       >
-        {fields.map((field) => (
-          <FieldInput
-            key={field.name}
-            label={field.label}
-            name={field.name}
-            control={form.control}
-            placeholder={field.placeholder}
-            type={field.type}
-          />
-        ))}
+        {fields.map((field) =>
+          field.type === "select" ? (
+            <FieldSelect
+              key={field.name}
+              label={field.label}
+              name={field.name}
+              control={form.control}
+              required={field.required}
+            />
+          ) : (
+            <FieldInput
+              key={field.name}
+              label={field.label}
+              name={field.name}
+              control={form.control}
+              placeholder={field.placeholder}
+              type={field.type}
+              step={field.step}
+              required={field.required}
+            />
+          )
+        )}
         <div className="flex w-full items-center justify-between pt-2">
           <Button
             type="reset"
@@ -145,12 +192,16 @@ export const FieldInput = ({
   control,
   placeholder,
   type,
+  step,
+  required = true,
 }: {
   label: string;
   name: Path<FrameFormValues>;
   control: Control<FrameFormValues>;
   placeholder: string;
   type: string;
+  step?: number;
+  required?: boolean;
 }) => {
   return (
     <Controller
@@ -163,7 +214,7 @@ export const FieldInput = ({
               name={name}
               label={label}
               description={""}
-              required={true}
+              required={required}
             />
             {/* Field */}
             <InputGroup>
@@ -173,9 +224,56 @@ export const FieldInput = ({
                 {...field}
                 aria-invalid={fieldState.invalid}
                 id={field.name}
-                step={0.1}
+                step={step}
               />
             </InputGroup>
+            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+          </FieldContent>
+        </Field>
+      )}
+    />
+  );
+};
+
+export const FieldSelect = ({
+  label,
+  name,
+  control,
+  required = true,
+}: {
+  label: string;
+  name: Path<FrameFormValues>;
+  control: Control<FrameFormValues>;
+  required?: boolean;
+}) => {
+  return (
+    <Controller
+      name={name}
+      control={control}
+      render={({ field, fieldState }) => (
+        <Field data-invalid={fieldState.invalid}>
+          <FieldContent>
+            <FieldLabelAndDescription
+              name={name}
+              label={label}
+              description={""}
+              required={required}
+            />
+            <Select
+              value={field.value as string}
+              onValueChange={field.onChange}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select animation" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="fade-in">fade-in</SelectItem>
+                <SelectItem value="reveal-word">reveal-word</SelectItem>
+                <SelectItem value="reveal-word-by-word">
+                  reveal-word-by-word
+                </SelectItem>
+              </SelectContent>
+            </Select>
             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
           </FieldContent>
         </Field>

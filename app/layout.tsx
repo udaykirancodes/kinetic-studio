@@ -1,5 +1,4 @@
-import { ThemeProvider } from "@/components/theme-provider";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import Provider from "@/components/provider";
 import type { Metadata } from "next";
 import { Geist_Mono, Inter, Manrope } from "next/font/google";
 import "./globals.css";
@@ -34,16 +33,7 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} ${inter.variable} ${giestMono.variable} antialiased`}
       >
-        <SidebarProvider className="flex flex-col">
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </SidebarProvider>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

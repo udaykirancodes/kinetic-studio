@@ -6,6 +6,7 @@ import {
   BRAND_AUDIO,
   BRAND_FRAMES,
 } from "./constants";
+import { normalizeFrames } from "./frame-utils";
 import { FrameData } from "./types";
 
 type VideoStore = {
@@ -26,25 +27,26 @@ type VideoStore = {
 };
 
 export const useVideoStore = create<VideoStore>((set) => ({
-  frames: BRAND_FRAMES,
+  frames: normalizeFrames(BRAND_FRAMES),
   info: {
     audio: BRAND_AUDIO,
     height: 720,
     width: 520,
     fps: 30,
   },
-  updateFrames: (newFrames: FrameData[]) => set({ frames: newFrames }),
+  updateFrames: (newFrames: FrameData[]) =>
+    set({ frames: normalizeFrames(newFrames) }),
   addFrameAtEnd: () =>
     set((state) => {
       const newFrames = [
         ...state.frames,
         {
           text: "",
-          wordCount: 0,
           time: 0.3,
           selected: false,
           backgroundColor: "black",
           textColor: "white",
+          type: "fade-in",
         },
       ];
       return { frames: newFrames };
@@ -54,18 +56,20 @@ export const useVideoStore = create<VideoStore>((set) => ({
       const newFrames = state.frames.map((frame) => {
         if (frame.selected) {
           return {
-            wordCount: frame.text.trim().split(" ").length,
+            ...frame,
             backgroundColor: newFrame.backgroundColor,
             textColor: newFrame.textColor,
-            selected: true,
             text: newFrame.text,
             time: newFrame.time,
+            type: newFrame.type,
+            fontSize: newFrame.fontSize,
+            selected: true,
           };
         } else {
           return { ...frame, selected: false };
         }
       });
-      return { ...state, frames: newFrames };
+      return { ...state, frames: normalizeFrames(newFrames) };
     }),
   updateText: (index: number, newText: string) =>
     set((state) => {
@@ -75,12 +79,11 @@ export const useVideoStore = create<VideoStore>((set) => ({
           return {
             ...item,
             text: text,
-            wordCount: text.length,
           };
         }
         return item;
       });
-      return { ...state, frames: newFrames };
+      return { ...state, frames: normalizeFrames(newFrames) };
     }),
   updateInfo: (newInfo: VideoStore["info"]) => set({ info: newInfo }),
   toggleSelect: (index: number) =>
@@ -123,7 +126,7 @@ export type AppStore = {
 export const useAppStore = create<AppStore>(() => ({
   templates: [
     {
-      frames: BLAST_FRAMES,
+      frames: normalizeFrames(BLAST_FRAMES),
       name: "Blast",
       info: {
         audio: BLAST_AUDIO,
@@ -133,7 +136,7 @@ export const useAppStore = create<AppStore>(() => ({
       },
     },
     {
-      frames: BLAST_FRAMES,
+      frames: normalizeFrames(BLAST_FRAMES),
       name: "Brand",
       info: {
         audio: BRAND_AUDIO,

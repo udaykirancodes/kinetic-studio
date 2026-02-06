@@ -1,11 +1,14 @@
+import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 
 export const TextMultiple = ({
   words,
   durationInFrames,
+  style,
 }: {
   words: string[];
   durationInFrames: number;
+  style?: React.CSSProperties;
 }) => {
   const frame = useCurrentFrame();
   const numWords = words.length;
@@ -38,6 +41,7 @@ export const TextMultiple = ({
       <div className="absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center">
         <div
           className={`p-6 text-center text-6xl font-semibold drop-shadow-xl`}
+          style={style}
         >
           {wordElements}
         </div>

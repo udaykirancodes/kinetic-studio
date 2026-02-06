@@ -1,5 +1,6 @@
 "use client";
 
+import { inferFrameTypeFromText } from "@/lib/frame-utils";
 import { useVideoStore } from "@/lib/store";
 import {
   AbsoluteFill,
@@ -8,7 +9,7 @@ import {
   staticFile,
   useVideoConfig,
 } from "remotion";
-import { TextMultiple, TextOne } from "./render";
+import { FrameText } from "./render";
 
 export const AppComposition = () => {
   const frames = useVideoStore((state) => state.frames);
@@ -49,14 +50,12 @@ export const AppComposition = () => {
                 color: item.textColor || "black",
               }}
             >
-              {item.wordCount === 1 ? (
-                <TextOne>{item.text}</TextOne>
-              ) : (
-                <TextMultiple
-                  words={item.text.split(" ")}
-                  durationInFrames={frameDurations[index] || 0}
-                />
-              )}
+              <FrameText
+                text={item.text}
+                type={item.type ?? inferFrameTypeFromText(item.text)}
+                durationInFrames={frameDurations[index] || 0}
+                fontSize={item.fontSize}
+              />
             </div>
           </Sequence>
         );
