@@ -20,19 +20,20 @@ export function FrameBar() {
   const frames = useVideoStore((state) => state.frames);
   const { state } = useSidebar();
   const addFrameAtEnd = useVideoStore((state) => state.addFrameAtEnd);
+
   return (
     <Sidebar
       style={
         {
-          "--sidebar-width": "20rem",
-          "--sidebar-width-icon": "19rem",
+          "--sidebar-width": "18rem",
+          "--sidebar-width-icon": "18rem",
         } as React.CSSProperties
       }
       collapsible="icon"
-      side={"right"}
+      side="right"
       variant="floating"
     >
-      <SidebarContent>
+      <SidebarContent className="min-w-0 overflow-auto">
         <SidebarGroup>
           <SidebarGroupLabel>Frames ({frames.length})</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -54,8 +55,7 @@ export function FrameBar() {
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu className="my-0 py-0">
-          {/* Add Empty Frame */}
-          <SidebarMenuItem key={"new-frame"} className="">
+          <SidebarMenuItem key="new-frame" className="">
             <SidebarMenuButton asChild>
               <Button variant="outline" onClick={addFrameAtEnd}>
                 {state === "expanded" ? "Add Frame at End" : "+"}

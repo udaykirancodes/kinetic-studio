@@ -53,7 +53,7 @@ const fields: FormField[] = [
   {
     name: "fontSize",
     label: "Font Size (px)",
-    placeholder: "96",
+    placeholder: "60",
     type: "number",
     description: "Optional: override font size for this frame",
     step: 1,

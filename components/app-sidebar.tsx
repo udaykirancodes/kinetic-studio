@@ -1,60 +1,121 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+"use client";
 
+import { FrameInput } from "@/components/studio/frame-input";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
-
-// Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-];
+import { useAppStore, useVideoStore } from "@/lib/store";
+import { useState } from "react";
 
 export function AppSidebar() {
+  const templates = useAppStore((state) => state.templates);
+  const frames = useVideoStore((state) => state.frames);
+  const updateFrames = useVideoStore((state) => state.updateFrames);
+  const updateInfo = useVideoStore((state) => state.updateInfo);
+  const addFrameAtEnd = useVideoStore((state) => state.addFrameAtEnd);
+  const { state } = useSidebar();
+  const [templateConfirmIndex, setTemplateConfirmIndex] = useState<
+    number | null
+  >(null);
+
+  const loadTemplate = (index: number) => {
+    const template = templates[index];
+    if (!template) return;
+    updateFrames(template.frames);
+    updateInfo(template.info);
+    setTemplateConfirmIndex(null);
+  };
+
   return (
-    <Sidebar collapsible="icon" variant="floating">
-      <SidebarContent>
+    <Sidebar
+      style={
+        {
+          "--sidebar-width": "18rem",
+          "--sidebar-width-icon": "18rem",
+        } as React.CSSProperties
+      }
+      collapsible="icon"
+      side="left"
+      variant="floating"
+    >
+      <AlertDialog
+        open={templateConfirmIndex !== null}
+        onOpenChange={(open) => !open && setTemplateConfirmIndex(null)}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Load template?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will replace your current frames and video settings.
+              Continue?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() =>
+                templateConfirmIndex !== null &&
+                loadTemplate(templateConfirmIndex)
+              }
+            >
+              Load
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+      <SidebarContent className="min-w-0 overflow-auto">
         <SidebarGroup>
-          <SidebarGroupLabel>KINETIC STUDIO (Examples)</SidebarGroupLabel>
+          <SidebarGroupLabel>Templates</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+              {templates.map((template, index) => (
+                <SidebarMenuItem
+                  key={template.name}
+                  className="bg-sidebar-accent cursor-pointer rounded-md"
+                >
+                  <SidebarMenuButton
+                    onClick={() => setTemplateConfirmIndex(index)}
+                    className="cursor-pointer"
+                  >
+                    <span>{template.name}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Frames ({frames.length})</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {frames.map((item, index) => (
+                <SidebarMenuItem key={index}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
+                    <FrameInput
+                      value={item.text}
+                      index={index}
+                      selected={item.selected}
+                    />
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -62,6 +123,17 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu className="my-0 py-0">
+          <SidebarMenuItem key="new-frame" className="">
+            <SidebarMenuButton asChild>
+              <Button variant="outline" onClick={addFrameAtEnd}>
+                {state === "expanded" ? "Add Frame at End" : "+"}
+              </Button>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }
