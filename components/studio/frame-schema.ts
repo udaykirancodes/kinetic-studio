@@ -11,7 +11,7 @@ export const frameSchema = z.object({
   time: z.coerce.number().min(0.1, "Time must be greater than 0"),
   backgroundColor: z.string().min(1),
   textColor: z.string().min(1),
-  type: z.enum(["fade-in", "reveal-word", "reveal-word-by-word"]),
+  type: z.enum(["text-one", "text-multiple"]),
   fontSize: emptyStringToUndefinedNumber
     .refine((v) => v === undefined || v >= 12, {
       message: "Font size must be at least 12",

@@ -44,10 +44,10 @@ const fields: FormField[] = [
   },
   {
     name: "type",
-    label: "Animation Type",
-    placeholder: "fade-in",
+    label: "Effect",
+    placeholder: "text-one",
     type: "select",
-    description: "Choose how the text reveals in this frame",
+    description: "text-one: single block. text-multiple: word by word.",
     required: true,
   },
   {
@@ -55,7 +55,7 @@ const fields: FormField[] = [
     label: "Font Size (px)",
     placeholder: "96",
     type: "number",
-    description: "Optional: override the font size for this frame",
+    description: "Optional: override font size for this frame",
     step: 1,
     required: false,
   },
@@ -103,7 +103,7 @@ export const FrameSettings = () => {
       time: 0,
       backgroundColor: "",
       textColor: "",
-      type: selectedFrame?.type || "fade-in",
+      type: selectedFrame?.type || "text-one",
       fontSize: selectedFrame?.fontSize,
     },
   });
@@ -114,7 +114,7 @@ export const FrameSettings = () => {
       time: selectedFrame?.time || 0,
       backgroundColor: selectedFrame?.backgroundColor || "",
       textColor: selectedFrame?.textColor || "",
-      type: selectedFrame?.type || "fade-in",
+      type: selectedFrame?.type || "text-one",
       fontSize: selectedFrame?.fontSize,
     });
   }, [form, selectedFrame]);
@@ -267,11 +267,8 @@ export const FieldSelect = ({
                 <SelectValue placeholder="Select animation" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="fade-in">fade-in</SelectItem>
-                <SelectItem value="reveal-word">reveal-word</SelectItem>
-                <SelectItem value="reveal-word-by-word">
-                  reveal-word-by-word
-                </SelectItem>
+                <SelectItem value="text-one">text-one</SelectItem>
+                <SelectItem value="text-multiple">text-multiple</SelectItem>
               </SelectContent>
             </Select>
             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}

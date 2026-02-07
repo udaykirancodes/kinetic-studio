@@ -1,16 +1,14 @@
 import type { FrameAnimationType, FrameData } from "./types";
 
-const splitWords = (text: string) => text.trim().split(/\s+/).filter(Boolean);
-
-export const inferFrameTypeFromText = (text: string): FrameAnimationType => {
-  const words = splitWords(text);
-  return words.length <= 1 ? "reveal-word" : "reveal-word-by-word";
-};
+export const inferFrameTypeFromText = (): FrameAnimationType => "text-one";
 
 export const normalizeFrame = (frame: FrameData): FrameData => {
+  const raw = frame.type ?? inferFrameTypeFromText();
+  const type: FrameAnimationType =
+    raw === "text-multiple" ? "text-multiple" : "text-one";
   return {
     ...frame,
-    type: frame.type ?? inferFrameTypeFromText(frame.text),
+    type,
   };
 };
 

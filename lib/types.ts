@@ -11,7 +11,6 @@ export type FrameData = {
   type?: FrameAnimationType;
   /**
    * Optional per-frame font size override (px).
-   * If omitted, a default size is used.
    */
   fontSize?: number;
   /**
@@ -21,7 +20,4 @@ export type FrameData = {
   wordCount?: number;
 };
 
-export type FrameAnimationType =
-  | "fade-in"
-  | "reveal-word"
-  | "reveal-word-by-word";
+export type FrameAnimationType = "text-one" | "text-multiple";

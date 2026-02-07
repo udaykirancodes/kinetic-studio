@@ -38,18 +38,15 @@ export const useVideoStore = create<VideoStore>((set) => ({
     set({ frames: normalizeFrames(newFrames) }),
   addFrameAtEnd: () =>
     set((state) => {
-      const newFrames = [
-        ...state.frames,
-        {
-          text: "",
-          time: 0.3,
-          selected: false,
-          backgroundColor: "black",
-          textColor: "white",
-          type: "fade-in",
-        },
-      ];
-      return { frames: newFrames };
+      const newFrame: FrameData = {
+        text: "",
+        time: 0.3,
+        selected: false,
+        backgroundColor: "black",
+        textColor: "white",
+        type: "text-one",
+      };
+      return { frames: [...state.frames, newFrame] };
     }),
   updateSelectedFrame: (newFrame: FrameFormValues) =>
     set((state) => {
@@ -136,7 +133,7 @@ export const useAppStore = create<AppStore>(() => ({
       },
     },
     {
-      frames: normalizeFrames(BLAST_FRAMES),
+      frames: normalizeFrames(BRAND_FRAMES),
       name: "Brand",
       info: {
         audio: BRAND_AUDIO,

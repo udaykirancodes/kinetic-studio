@@ -52,7 +52,7 @@ export const AppComposition = () => {
             >
               <FrameText
                 text={item.text}
-                type={item.type ?? inferFrameTypeFromText(item.text)}
+                type={item.type ?? inferFrameTypeFromText()}
                 durationInFrames={frameDurations[index] || 0}
                 fontSize={item.fontSize}
               />
