@@ -726,4 +726,13 @@ export const BRAND_FRAMES: FrameData[] = [
   },
 ];
 
+
 export const BRAND_AUDIO = "brand.mp3";
+
+export const DEFAULT_PROJECT_ID = "new-project";
+export const DEFAULT_VIDEO_INFO = {
+  audio: BRAND_AUDIO,
+  height: 720,
+  width: 520,
+  fps: 30,
+};

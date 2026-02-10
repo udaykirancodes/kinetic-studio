@@ -5,11 +5,14 @@ import {
   BLAST_FRAMES,
   BRAND_AUDIO,
   BRAND_FRAMES,
+  DEFAULT_PROJECT_ID,
+  DEFAULT_VIDEO_INFO,
 } from "./constants";
 import { normalizeFrames } from "./frame-utils";
 import { FrameData } from "./types";
 
 type VideoStore = {
+  id: string;
   frames: FrameData[];
   info: {
     audio: string;
@@ -17,6 +20,7 @@ type VideoStore = {
     width: number;
     fps: number;
   };
+  setId: (id: string) => void;
   updateFrames: (newData: FrameData[]) => void;
   addFrameAtEnd: () => void;
   updateInfo: (newInfo: VideoStore["info"]) => void;
@@ -27,13 +31,10 @@ type VideoStore = {
 };
 
 export const useVideoStore = create<VideoStore>((set) => ({
+  id: "brand", // Default to brand as per previous default content
   frames: normalizeFrames(BRAND_FRAMES),
-  info: {
-    audio: BRAND_AUDIO,
-    height: 720,
-    width: 520,
-    fps: 30,
-  },
+  info: DEFAULT_VIDEO_INFO,
+  setId: (id: string) => set({ id }),
   updateFrames: (newFrames: FrameData[]) =>
     set({ frames: normalizeFrames(newFrames) }),
   addFrameAtEnd: () =>
@@ -109,6 +110,7 @@ export const useVideoStore = create<VideoStore>((set) => ({
 
 export type AppStore = {
   templates: {
+    id: string;
     frames: FrameData[];
     name: string;
     info: {
@@ -123,6 +125,13 @@ export type AppStore = {
 export const useAppStore = create<AppStore>(() => ({
   templates: [
     {
+      id: DEFAULT_PROJECT_ID,
+      frames: [],
+      name: "New Project",
+      info: DEFAULT_VIDEO_INFO,
+    },
+    {
+      id: "blast",
       frames: normalizeFrames(BLAST_FRAMES),
       name: "Blast",
       info: {
@@ -133,6 +142,7 @@ export const useAppStore = create<AppStore>(() => ({
       },
     },
     {
+      id: "brand",
       frames: normalizeFrames(BRAND_FRAMES),
       name: "Brand",
       info: {

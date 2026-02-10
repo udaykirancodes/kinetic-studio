@@ -22,14 +22,17 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
+  useSidebar
 } from "@/components/ui/sidebar";
 import { useAppStore, useVideoStore } from "@/lib/store";
+import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 
 export function AppSidebar() {
   const templates = useAppStore((state) => state.templates);
   const frames = useVideoStore((state) => state.frames);
+  const videoId = useVideoStore((state) => state.id);
+  const setVideoId = useVideoStore((state) => state.setId);
   const updateFrames = useVideoStore((state) => state.updateFrames);
   const updateInfo = useVideoStore((state) => state.updateInfo);
   const addFrameAtEnd = useVideoStore((state) => state.addFrameAtEnd);
@@ -43,6 +46,7 @@ export function AppSidebar() {
     if (!template) return;
     updateFrames(template.frames);
     updateInfo(template.info);
+    setVideoId(template.id);
     setTemplateConfirmIndex(null);
   };
 
@@ -91,13 +95,22 @@ export function AppSidebar() {
               {templates.map((template, index) => (
                 <SidebarMenuItem
                   key={template.name}
-                  className="bg-sidebar-accent cursor-pointer rounded-md"
+                  className="cursor-pointer rounded-md flex items-center justify-center"
                 >
+                  
                   <SidebarMenuButton
                     onClick={() => setTemplateConfirmIndex(index)}
-                    className="cursor-pointer"
+                    className="cursor-pointer flex items-center justify-between"
+                    isActive={template.id === videoId}
                   >
                     <span>{template.name}</span>
+                    {
+                      index === 0 && (
+                        <Button className="" size={"icon-xs"}>
+                          <PlusIcon/>
+                        </Button>
+                      )
+                    }
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
