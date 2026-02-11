@@ -16,8 +16,7 @@ export const Hero = () => {
               — fast and simple
             </Heading>
             <SubHeading className="py-8">
-              Create beautiful kinetic typography videos from text — fast and
-              simple
+              You are one click away from creating beautiful kinetic typography videos
             </SubHeading>
             <div className="flex items-center gap-2 md:gap-4">
               <Link href="/studio">
