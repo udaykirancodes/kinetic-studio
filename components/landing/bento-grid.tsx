@@ -5,13 +5,19 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Palette, Play, Sparkles, Timer } from "lucide-react";
 import { motion } from "motion/react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
-import { BentoCard, DEMO_IMAGE_1, DEMO_IMAGE_2 } from "./bento-card";
+import { BentoCard } from "./bento-card";
 
 const SAMPLE_WORDS = ["Create", "beautiful", "kinetic", "typography"];
 const SAMPLE_COLORS = ["#0f172a", "#dc2626", "#2563eb", "#16a34a", "#ca8a04"];
 
 export function BentoGrid() {
+  const { theme } = useTheme();
+
+  const DEMO_IMAGE_2 = theme === "dark" ? "/dark-2.png" : "/light-2.png";
+  const DEMO_IMAGE_1 = theme === "dark" ? "/dark-1.png" : "/light-1.png";
+
   return (
     <section className="pb-10">
       <Container>

@@ -5,6 +5,7 @@ import { FrameSettings } from "@/components/studio/frame-settings";
 import { StudioNav } from "@/components/studio/studio-nav";
 import { VideoSettings } from "@/components/studio/video-settings";
 import { Card } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function Studio() {
   return (
@@ -24,7 +25,12 @@ export default function Studio() {
           <Card className="flex-1 rounded-sm p-2">
             <VideoSettings />
           </Card>
-          <Card className="col-span-2 rounded-sm px-2 py-5">Bottom</Card>
+          <Card className="col-span-2 flex flex-row items-center justify-center gap-1 rounded-sm px-2 py-5">
+            Made with ❤️ by{" "}
+            <Link href="https://github.com/udaykirancodes" target="_blank">
+              Uday
+            </Link>
+          </Card>
         </section>
       </div>
       <FrameBar />

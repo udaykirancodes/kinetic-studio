@@ -1,9 +1,14 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 
 export const PerspectiveImages = () => {
+  const { theme } = useTheme();
+
+  const BOTTOM_IMAGE = theme === "dark" ? "/dark-2.png" : "/light-2.png";
+  const TOP_IMAGE = theme === "dark" ? "/dark-1.png" : "/light-1.png";
   return (
     <div className="relative my-10 h-50 w-full py-10 md:col-span-6 md:my-0 md:h-88 md:pl-10">
       <motion.div
@@ -22,7 +27,7 @@ export const PerspectiveImages = () => {
         className="perspective-[3000px]"
       >
         <Image
-          src={"https://assets.aceternity.com/agenforce-demo-2.jpg"}
+          src={BOTTOM_IMAGE}
           height={720}
           width={720}
           alt="Demo 1"
@@ -49,7 +54,7 @@ export const PerspectiveImages = () => {
         className={cn("translate-x-20 translate-y-40 perspective-[3000px]")}
       >
         <Image
-          src={"https://assets.aceternity.com/agenforce-demo-1.jpg"}
+          src={TOP_IMAGE}
           height={720}
           width={720}
           alt="Demo 2"

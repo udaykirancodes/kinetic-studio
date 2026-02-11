@@ -5,9 +5,6 @@ import { motion, useMotionTemplate, useMotionValue } from "motion/react";
 import type { ReactNode } from "react";
 import { useCallback, useRef } from "react";
 
-const DEMO_IMAGE_1 = "https://assets.aceternity.com/agenforce-demo-2.jpg";
-const DEMO_IMAGE_2 = "https://assets.aceternity.com/agenforce-demo-1.jpg";
-
 type BentoCardProps = {
   title: string;
   description?: string;
@@ -194,5 +191,3 @@ export function BentoCard({
     </motion.div>
   );
 }
-
-export { DEMO_IMAGE_1, DEMO_IMAGE_2 };

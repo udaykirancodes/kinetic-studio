@@ -22,7 +22,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { useAppStore, useVideoStore } from "@/lib/store";
 import { PlusIcon } from "lucide-react";
@@ -95,22 +95,15 @@ export function AppSidebar() {
               {templates.map((template, index) => (
                 <SidebarMenuItem
                   key={template.name}
-                  className="cursor-pointer rounded-md flex items-center justify-center"
+                  className="flex cursor-pointer items-center justify-center rounded-md"
                 >
-                  
                   <SidebarMenuButton
                     onClick={() => setTemplateConfirmIndex(index)}
-                    className="cursor-pointer flex items-center justify-between"
+                    className="flex cursor-pointer items-center justify-between"
                     isActive={template.id === videoId}
                   >
                     <span>{template.name}</span>
-                    {
-                      index === 0 && (
-                        <Button className="" size={"icon-xs"}>
-                          <PlusIcon/>
-                        </Button>
-                      )
-                    }
+                    {index === 0 && <PlusIcon />}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
