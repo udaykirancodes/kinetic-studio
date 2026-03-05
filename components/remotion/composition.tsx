@@ -54,7 +54,7 @@ export const AppComposition = () => {
                 text={item.text}
                 type={item.type ?? inferFrameTypeFromText(item.text ?? "")}
                 durationInFrames={frameDurations[index] || 0}
-                fontSize={item.fontSize}
+                fontSize={item.fontSize || 60}
               />
             </div>
           </Sequence>

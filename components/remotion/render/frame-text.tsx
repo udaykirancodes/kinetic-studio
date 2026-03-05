@@ -19,7 +19,7 @@ export const FrameText = ({
 
   const style: React.CSSProperties | undefined = fontSize
     ? { fontSize: `${fontSize}px`, lineHeight: 1.05 }
-    : undefined;
+    : {fontSize: '60px', lineHeight: 1.05};
 
   if (type === "text-one") {
     return <TextOne style={style}>{safeText}</TextOne>;

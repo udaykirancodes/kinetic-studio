@@ -63,3 +63,10 @@ Follow these steps to set up the project locally.
 ## License
 
 MIT
+
+
+## Export the video 
+
+```bash 
+npx remotion render components/remotion/index.ts video-render out/video.mp4
+```
